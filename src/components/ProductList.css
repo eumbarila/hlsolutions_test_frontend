@@ -1,0 +1,370 @@
+/* ProductList */
+
+.product-overall {
+    display: flex;
+    flex-direction: row;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+/* ProductCard */
+
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 16px;
+    width: 270px;
+    box-shadow: 0 2px 4px #b2cbcd;
+    background-color: rgb(178, 203, 205, 0.9);
+    position: relative;
+}
+
+.product-card:hover {
+    border: 1px solid #9c9c9c;
+    background-color: rgba(162, 177, 179, 0.9);
+    box-shadow: 0 2px 4px #748181;
+}
+
+.product-card h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #3b3b3b;
+}
+
+.product-card p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #616161;
+}
+
+.product-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.product-card-actions button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product-card-actions button:first-child {
+    background-color: #50c463;
+    color: white;
+}
+
+.product-card-actions button:first-child:hover {
+    background-color: #15e715;
+}
+
+.product-card-actions button:last-child {
+    background-color: #ff485a;
+    color: white;
+}
+
+.product-card-actions button:last-child:hover {
+    background-color: #ff132a;
+}
+
+/* ProductForm */
+
+.edit-product-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+  
+.edit-product-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-product-form label {
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+.edit-product-form input,
+.edit-product-form textarea {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-actions button:first-child {
+    background-color: #50c463;
+    color: white;
+}
+
+.form-actions button:first-child:hover {
+    background-color: #15e715;
+    color: white;
+}
+
+.form-actions button:last-child {
+    background-color: #ff485a;
+    color: white;
+}
+
+.form-actions button:last-child:hover {
+    background-color: #ff132a;
+    color: white;
+}
+
+/* CategoryCard */
+
+.category-card {
+    border: 1px solid #cccccc;
+    border-radius: 12px;
+    padding: 16px;
+    width: 110px;
+    height: 15px;
+    box-shadow: 0 2px 4px #a0ac80;
+    background-color: #c6d69b;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.category-card:hover {
+    border: 1px solid #9c9c9c;
+    box-shadow: 0 2px 4px #7f8865;
+    background-color: #a8b683;
+}
+
+.category-card h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #3b3b3b;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* CategoryList */
+
+.category-list-container {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.category-list-container button {
+    padding: 10px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.category-list-container button:first-child {
+    background-color: #c4b249;
+    color: white;
+}
+
+.category-list-container button:first-child:hover {
+    background-color: #949236;
+    color: white;
+}
+
+.category-list {
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category-card {
+    border: 1px solid #cccccc;
+    border-radius: 12px;
+    padding: 16px;
+    width: 170px;
+    box-shadow: 0 2px 4px #a0ac80;
+    background-color: #c6d69b;
+    position: relative;
+}
+
+button {
+    margin: 5px;
+}
+
+.category-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 1000;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CategoryForm */
+
+.edit-category-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+  
+.edit-category-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-category-form label {
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+.edit-category-form input,
+.edit-category-form textarea {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.category-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.category-form-actions button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.category-form-actions button:first-child {
+    background-color: #50c463;
+    color: white;
+}
+
+.category-form-actions button:first-child:hover {
+    background-color: #15e715;
+    color: white;
+}
+
+.category-form-actions button:last-child {
+    background-color: #ff485a;
+    color: white;
+}
+
+.category-form-actions button:last-child:hover {
+    background-color: #ff132a;
+    color: white;
+}
+
+/* CreateCategoryForm */
+
+.create-category-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+  
+.create-category-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-category-form label {
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+.create-category-form input,
+.create-category-form textarea {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.create-category-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.create-category-form-actions button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-category-form-actions button:first-child {
+    background-color: #50c463;
+    color: white;
+}
+
+.create-category-form-actions button:first-child:hover {
+    background-color: #15e715;
+    color: white;
+}
+
+.create-category-form-actions button:last-child {
+    background-color: #ff485a;
+    color: white;
+}
+
+.create-category-form-actions button:last-child:hover {
+    background-color: #ff132a;
+    color: white;
+}
