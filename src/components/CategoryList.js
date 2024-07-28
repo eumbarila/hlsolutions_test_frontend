@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import categoryService from '../services/categoryService';
-import productService from '../services/productService';
 import CategoryCard from './CategoryCard';
 import EditCategoryForm from './EditCategoryForm';
 import CreateCategoryForm from './CreateCategoryForm';
-import CreateProductForm from './CreateProductForm';
-import './ProductList.css';
+import '../styles.css';
 
-const CategoryList = ({ onCreateProduct }) => {
+/**
+ * Represents a component that displays a list of categories.
+ * 
+ * @component
+ * @returns {JSX.Element} The CategoryList component.
+ */
+/**
+ * Renders a list of categories with options to edit, delete, and create new categories.
+ * @returns {JSX.Element} The CategoryList component.
+ */
+const CategoryList = () => {
+  /**
+   * State variables for categories, loading status, editing category, and creating category.
+   */
   const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingCategory, setEditingCategory] = useState(null);
   const [creatingCategory, setCreatingCategory] = useState(false);
-  const [creatingProduct, setCreatingProduct] = useState(false);
 
+  /**
+   * Fetches all categories from the server when the component mounts.
+   */
   useEffect(() => {
     categoryService.get_all()
       .then(response => {
@@ -27,18 +39,25 @@ const CategoryList = ({ onCreateProduct }) => {
       });
   }, []);
 
+  /**
+   * Sets the creatingCategory state to true, indicating that a new category is being created.
+   */
   const handleCreateCategory = () => {
     setCreatingCategory(true);
   };
 
-  const handleCreateProduct = () => {
-    setCreatingProduct(true);
-  };
-
+  /**
+   * Sets the editingCategory state to the selected category, indicating that it is being edited.
+   * @param {Object} category - The category object to be edited.
+   */
   const handleEdit = (category) => {
     setEditingCategory(category);
   };
 
+  /**
+   * Deletes a category from the server and updates the categories state.
+   * @param {number} id_category - The ID of the category to be deleted.
+   */
   const handleDelete = (id_category) => {
     categoryService.delete(id_category)
       .then(() => {
@@ -51,6 +70,11 @@ const CategoryList = ({ onCreateProduct }) => {
       });
   };
 
+  /**
+   * Updates a category on the server and updates the categories state.
+   * @param {number} id_category - The ID of the category to be updated.
+   * @param {Object} updatedCategory - The updated category object.
+   */
   const handleSave = (id_category, updatedCategory) => {
     categoryService.put(id_category, updatedCategory)
       .then(response => {
@@ -65,6 +89,10 @@ const CategoryList = ({ onCreateProduct }) => {
       });
   };
 
+  /**
+   * Creates a new category on the server and updates the categories state.
+   * @param {Object} newCategory - The new category object to be created.
+   */
   const handleCreateCategorySave = (newCategory) => {
     categoryService.create_category(newCategory)
       .then(response => {
@@ -77,38 +105,29 @@ const CategoryList = ({ onCreateProduct }) => {
       });
   };
 
-  const handleSaveNewProduct = (newProduct) => {
-    productService.create_product(newProduct)
-      .then(response => {
-        setProducts([...products, response.data]);
-        setCreatingProduct(false);
-        window.location.reload();
-      })
-      .catch(error => {
-        console.error('Error creating product:', error);
-      });
-  };
-
-  const handleCancelCreate = () => {
-    setCreatingProduct(false);
-  };
-
+  /**
+   * Cancels the editing or creating of a category by resetting the editingCategory and creatingCategory states.
+   */
   const handleCancel = () => {
     setEditingCategory(null);
     setCreatingCategory(false);
-    setCreatingProduct(false);
   };
 
+  /**
+   * Renders a loading message if the categories are still being fetched, otherwise renders the category list.
+   * @returns {JSX.Element} The loading message or the category list.
+   */
   if (loading) {
     return <p>Loading categories...</p>;
   }
 
   return (
-    <div className="category-list-container">
-      <div className="category-actions">
-        <button onClick={handleCreateCategory}>New Category</button>
-        <button onClick={handleCreateProduct}>New Product</button>
+    <div className="category-container">
+      <div className="subdivision-header">
+        <h1 className='categories-title'>Categories</h1>
+        <button onClick={handleCreateCategory} className='category-add-button'>Add new</button>
       </div>
+
       <div className="category-list">
         {categories.map(category => (
           <CategoryCard 
@@ -118,8 +137,9 @@ const CategoryList = ({ onCreateProduct }) => {
           />
         ))}
       </div>
+
       {editingCategory && (
-        <div className="category-modal">
+        <div className="modal">
           <EditCategoryForm 
             category={editingCategory} 
             onSave={handleSave} 
@@ -128,19 +148,12 @@ const CategoryList = ({ onCreateProduct }) => {
           />
         </div>
       )}
+
       {creatingCategory && (
-        <div className="category-modal">
+        <div className="modal">
           <CreateCategoryForm 
             onSave={handleCreateCategorySave} 
             onCancel={handleCancel} 
-          />
-        </div>
-      )}
-      {creatingProduct && (
-        <div className="category-modal">
-          <CreateProductForm 
-            onSave={handleSaveNewProduct} 
-            onCancel={handleCancelCreate} 
           />
         </div>
       )}

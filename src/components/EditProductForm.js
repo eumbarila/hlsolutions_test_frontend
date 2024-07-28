@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import categoryService from '../services/categoryService';
-import './ProductList.css';
+import '../styles.css';
 
+/**
+ * EditProductForm component for editing a product.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.product - The product object to be edited.
+ * @param {Function} props.onSave - The function to be called when the form is submitted.
+ * @param {Function} props.onCancel - The function to be called when the form is canceled.
+ * @returns {JSX.Element} The rendered EditProductForm component.
+ */
 const EditProductForm = ({ product, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -33,6 +42,11 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
     }
   }, [product]);
 
+  /**
+   * Handles the change event of the form inputs.
+   *
+   * @param {Object} e - The event object.
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -41,21 +55,26 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
     });
   };
 
+  /**
+   * Handles the form submission.
+   *
+   * @param {Object} e - The event object.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(product.id_product, formData);
   };
 
   return (
-    <div className="edit-product-form">
+    <div className="product-form">
       <form onSubmit={handleSubmit}>
         <h2>Edit Product</h2>
         <label>
-          Name:
+          Name
           <input type="text" name="name" value={formData.name} onChange={handleChange} />
         </label>
         <label>
-          Category:
+          Category<br></br>
           <select 
             name="category" 
             value={formData.category} 
@@ -70,15 +89,15 @@ const EditProductForm = ({ product, onSave, onCancel }) => {
           </select>
         </label>
         <label>
-          Description:
+          Description
           <textarea name="description" value={formData.description} onChange={handleChange} />
         </label>
         <label>
-          Quantity:
+          Quantity
           <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} />
         </label>
         <label>
-          Price:
+          Price
           <input type="number" name="price" value={formData.price} onChange={handleChange} />
         </label>
         <div className="form-actions">
